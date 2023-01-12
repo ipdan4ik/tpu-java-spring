@@ -18,13 +18,30 @@ public class CountryController {
         this.countryService = countryService;
     }
 
+
     @GetMapping
-    public List<Country> getCountry() {
-        return countryService.getCountry();
+    public List<Country> getAllCountries(){
+        return countryService.getCountries();
+    }
+
+    @GetMapping("{id}")
+    public Country getCountry(@PathVariable Long id) {
+        return countryService.getCountry(id);
     }
 
     @PostMapping
     public void postCountry(@RequestBody Country country) {
         countryService.addCountry(country);
     }
+
+    @PutMapping("{id}")
+    public Country updateCountry(@PathVariable Long id, @RequestBody Country country){
+        return countryService.putCountry(id, country);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCountry(@PathVariable Long id) {
+        countryService.deleteCountry(id);
+    }
+
 }

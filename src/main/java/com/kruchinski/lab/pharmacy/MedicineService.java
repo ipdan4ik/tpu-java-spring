@@ -15,12 +15,29 @@ public class MedicineService {
         this.medicineRepository = medicineRepository;
     }
 
-    public List<Medicine> getMedicine() {
+    public Medicine getMedicine(Long id) {
+        return medicineRepository.findById(id).get();
+    }
+
+    public List<Medicine> getMedicines() {
         return medicineRepository.findAll();
     }
 
     public void addMedicine(Medicine medicine) {
         medicineRepository.save(medicine);
+    }
+
+    public Medicine putMedicine(Long id, Medicine medicine) {
+        Medicine item = medicineRepository.findById(id).get();
+        item.setName(medicine.getName());
+        item.setComposition(medicine.getComposition());
+        item.setActive_substance(medicine.getActive_substance());
+        item.setManufacturer(medicine.getManufacturer());
+        return medicineRepository.save(item);
+    }
+
+    public void deleteMedicine(Long id) {
+        medicineRepository.deleteById(id);
     }
 
 }

@@ -18,12 +18,27 @@ public class ManufacturerController {
     }
 
     @GetMapping
-    public List<Manufacturer> getManufacturer() {
-        return manufacturerService.getManufacturer();
+    public List<Manufacturer> getAllManufacturers() {
+        return manufacturerService.getManufacturers();
+    }
+
+    @GetMapping("{id}")
+    public Manufacturer getManufacturer(@PathVariable Long id) {
+        return manufacturerService.getManufacturer(id);
     }
 
     @PostMapping
     public void postManufacturer(@RequestBody Manufacturer manufacturer) {
         manufacturerService.addManufacturer(manufacturer);
+    }
+
+    @PutMapping("{id}")
+    public Manufacturer updateManufacturer(@PathVariable Long id, @RequestBody Manufacturer manufacturer){
+        return manufacturerService.putManufacturer(id, manufacturer);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteManufacturer(@PathVariable Long id) {
+        manufacturerService.deleteManufacturer(id);
     }
 }

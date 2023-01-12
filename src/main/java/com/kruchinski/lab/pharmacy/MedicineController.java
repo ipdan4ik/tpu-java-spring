@@ -20,12 +20,27 @@ public class MedicineController {
     }
 
     @GetMapping
-    public List<Medicine> getMedicine() {
-        return medicineService.getMedicine();
+    public List<Medicine> getAllMedicine() {
+        return medicineService.getMedicines();
+    }
+
+    @GetMapping("{id}")
+    public Medicine getMedicine(@PathVariable Long id) {
+        return medicineService.getMedicine(id);
     }
 
     @PostMapping
     public void postMedicine(@RequestBody Medicine medicine) {
         medicineService.addMedicine(medicine);
+    }
+
+    @PutMapping("{id}")
+    public Medicine updateMedicine(@PathVariable Long id, @RequestBody Medicine medicine){
+        return medicineService.putMedicine(id, medicine);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteMedicine(@PathVariable Long id) {
+        medicineService.deleteMedicine(id);
     }
 }

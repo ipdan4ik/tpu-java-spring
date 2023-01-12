@@ -14,11 +14,26 @@ public class SubstanceService {
         this.substanceRepository = substanceRepository;
     }
 
-    public List<Substance> getSubstance() {
+    public Substance getSubstance(Long id) {
+        return substanceRepository.findById(id).get();
+    }
+
+    public List<Substance> getSubstances() {
         return substanceRepository.findAll();
     }
 
     public void addSubstance(Substance substance) {
         substanceRepository.save(substance);
+    }
+
+    public Substance putSubstance(Long id, Substance substance) {
+        Substance item = substanceRepository.findById(id).get();
+        item.setName(substance.getName());
+        item.setDescription(substance.getDescription());
+        return substanceRepository.save(item);
+    }
+
+    public void deleteSubstance(Long id) {
+        substanceRepository.deleteById(id);
     }
 }

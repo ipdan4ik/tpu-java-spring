@@ -18,12 +18,27 @@ public class SubstanceController {
     }
 
     @GetMapping
-    public List<Substance> getSubstance() {
-        return substanceService.getSubstance();
+    public List<Substance> getAllSubstances() {
+        return substanceService.getSubstances();
+    }
+
+    @GetMapping("{id}")
+    public Substance getSubstance(@PathVariable Long id) {
+        return substanceService.getSubstance(id);
     }
 
     @PostMapping
     public void postSubstance(@RequestBody Substance substance) {
         substanceService.addSubstance(substance);
+    }
+
+    @PutMapping("{id}")
+    public Substance updateSubstance(@PathVariable Long id, @RequestBody Substance substance){
+        return substanceService.putSubstance(id, substance);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteSubstance(@PathVariable Long id) {
+        substanceService.deleteSubstance(id);
     }
 }
