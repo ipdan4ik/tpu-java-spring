@@ -32,7 +32,8 @@ public class WebSecurityConfig {
                         .anyRequest().permitAll()
                 )
                 .httpBasic(withDefaults())
-                .sessionManagement().disable();
+                .sessionManagement().disable().
+                csrf().disable();
         return http.build();
     }
 
